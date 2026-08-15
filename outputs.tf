@@ -28,7 +28,7 @@ output "storagegateway_smb_file_shares_bucket_region" {
 }
 output "storagegateway_smb_file_shares_cache_attributes" {
   description = "Map of cache_attributes values across all storagegateway_smb_file_shares, keyed the same as var.storagegateway_smb_file_shares"
-  value       = { for k, v in aws_storagegateway_smb_file_share.storagegateway_smb_file_shares : k => v.cache_attributes if v.cache_attributes != null && length(v.cache_attributes) > 0 }
+  value       = { for k, v in aws_storagegateway_smb_file_share.storagegateway_smb_file_shares : k => one(v.cache_attributes) if v.cache_attributes != null && length(v.cache_attributes) > 0 }
 }
 output "storagegateway_smb_file_shares_case_sensitivity" {
   description = "Map of case_sensitivity values across all storagegateway_smb_file_shares, keyed the same as var.storagegateway_smb_file_shares"
